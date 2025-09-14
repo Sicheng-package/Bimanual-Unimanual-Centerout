@@ -11,11 +11,11 @@ This repository provides MATLAB-based code for the center-out task, supporting b
 On the left and right computers, run bimanual_L4.m and bimanual_R4.m respectively.  
 Ensure TCP connection is established (default server IP: 192.168.0.10).
 
-### **parameters**  
-centerHoldDuration: required center-hold duration
-targetHoldDuration: required target-hold duration
-firstMoveThreshold: movement onset threshold
-timeout: maximum trial duration
+### **parameters**    
+centerHoldDuration: required center-hold duration  
+targetHoldDuration: required target-hold duration  
+firstMoveThreshold: movement onset threshold  
+timeout: maximum trial duration  
 circleDiameter / radii: target size and distance
 
 
