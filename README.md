@@ -32,3 +32,5 @@ This limitation comes from the TCP client’s use of fwrite with uint8 data type
 To avoid overflow and loss of precision, signals are normalized before transmission and decoded back on the receiver side.
 ### **Pointer precision:**      
 in the OS settings, pointer acceleration must be disabled and pointer precision fixed. This ensures a stable and reproducible mapping between joystick deflection and cursor velocity.
+### **Potential Issues:**    
+Incomplete coordinate recording:Due to various event-handling routines in the code (e.g., trial resets, barrier synchronization, or premature exits), cursor coordinates may occasionally be missing or misaligned. This requires careful post-processing to ensure data integrity.When TTL pulses are sent in parallel with TCP communication, timing mismatches can occur. Users should cross-check event logs and TTL markers to avoid misinterpretation of trial timing.
