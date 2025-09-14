@@ -30,5 +30,5 @@ TTL signals (for alignment with neural recordings)
 Communication between client and server is based on byte packets (0–255). This means the maximum representable value per transmission is 255.  
 This limitation comes from the TCP client’s use of fwrite with uint8 data type.  
 To avoid overflow and loss of precision, signals are normalized before transmission and decoded back on the receiver side.
-#### **Pointer precision:**      
+### **Pointer precision:**      
 in the OS settings, pointer acceleration must be disabled and pointer precision fixed. This ensures a stable and reproducible mapping between joystick deflection and cursor velocity.
