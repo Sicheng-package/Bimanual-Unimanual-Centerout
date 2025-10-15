@@ -8,7 +8,7 @@ This repository provides MATLAB-based code for the center-out task, supporting b
 4.Ethernet cable or LAN connection for TCP communication
 
 ## **To run this code**  
-On the left and right computers, run bimanual_L6.m and bimanual_R6.m respectively.  
+On the left and right computers, run bimanual_L.m and bimanual_R.m respectively.  
 Ensure TCP connection is established (default server IP: 192.168.0.10).
 
 ### **Parameters**    
