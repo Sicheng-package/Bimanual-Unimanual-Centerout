@@ -33,3 +33,7 @@ in the OS settings, pointer acceleration must be disabled and pointer precision 
 
 2.Trial duration mismatch due to network latency:
 Because of network transmission delays, one computer may log a trial end time a few milliseconds longer than the other. During data processing, it is recommended to align trials by the shorter duration and adjust the corresponding cursor coordinates accordingly.
+
+## License
+
+MIT
