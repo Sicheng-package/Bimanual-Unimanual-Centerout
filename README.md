@@ -117,32 +117,7 @@ This ensures reproducible kinematic behavior.
 
 ### **Potential Issues**
 
-#### **1. Incomplete coordinate recording**
-
-Due to event handling such as:
-
-* Trial resets
-* Black-screen synchronization
-* Premature aborts
-* TCP delays
-
-Some trials may have:
-
-* Missing samples
-* Shortened trajectories
-* Misaligned time vectors
-
-**Recommendation:**
-Always cross-check:
-
-* Event logs
-* TTL time stamps
-
-to ensure data integrity.
-
----
-
-#### **2. Trial duration mismatch (network latency)**
+#### ** Trial duration mismatch (network latency)**
 
 Because the two computers run their own clocks:
 
