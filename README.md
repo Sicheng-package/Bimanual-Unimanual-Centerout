@@ -1,1 +1,170 @@
-# **Introduction** This repository provides MATLAB-based code for the center-out task, supporting both unimanual (single-hand) and bimanual (two-hand) paradigms.The task was designed for rhesus monkeys using joysticks to control on-screen cursors and reach targets. ## **Requirements** 1.Usb based Joysticks 2.two computers with Matlab（MATLAB R2022a or later） 3.NI 6009（external DAQ hardware for TTL signal recording） 4.Ethernet cable or LAN connection for TCP communication ## **To run this code** On the left and right computers, run bimanual_L.m and bimanual_R.m respectively. Ensure TCP connection is established (default server IP: 192.168.0.10). ### **Parameters** centerHoldDuration: required center-hold duration targetHoldDuration: required target-hold duration firstMoveThreshold: movement onset threshold timeout: maximum trial duration circleDiameter / radii: target size and distance ### **Outputs** Event log (CSV/Mat format)trial index, success/failure timestamps for centerEnter/Exit, firstMove, hoverEnter, targetHold, trialEnd, etc. Cursor trajectories (mousePath, x/y vs. time) TTL signals (for alignment with neural recordings) ## **Notes & Limitations** ### **Pointer precision:** in the OS settings, pointer acceleration must be disabled and pointer precision fixed. This ensures a stable and reproducible mapping between joystick deflection and cursor velocity. ### **Potential Issues:** 1.Incomplete coordinate recording:Due to various event-handling routines in the code (e.g., trial resets, barrier synchronization, or premature exits), cursor coordinates may occasionally be missing or misaligned. This requires careful post-processing to ensure data integrity.When TTL pulses are sent in parallel with TCP communication, timing mismatches can occur. Users should cross-check event logs and TTL markers to avoid misinterpretation of trial timing. 2.Trial duration mismatch due to network latency: Because of network transmission delays, one computer may log a trial end time a few milliseconds longer than the other. During data processing, it is recommended to align trials by the shorter duration and adjust the corresponding cursor coordinates accordingly. ## License MIT
+下面是按照 GitHub 最标准、最美观的 Markdown README 风格，**完全重新排版后的版本**。
+内容与你提供的相同，只是换成 GitHub-friendly 格式（标题、列表、加粗、分段、代码块、表格等）。
+
+你可以 **直接复制到 README.md 使用**。
+
+---
+
+# **Center-Out Reaching Task (Unimanual + Bimanual)**
+
+MATLAB-based framework for running **unimanual (single-hand)** and **bimanual (two-hand)** center-out reaching tasks.
+Originally designed for **rhesus monkeys** using joysticks to control on-screen cursors and reach peripheral targets.
+
+Compatible with neural recording setups (e.g., Neuropixels) using high-precision TTL signals for alignment.
+
+---
+
+## **Requirements**
+
+### **Hardware**
+
+* USB-based joysticks
+* **Two computers** running MATLAB R2022a or later
+* **NI USB-6009** (or similar) for TTL signal output
+* LAN / Ethernet connection for TCP communication
+
+### **Software**
+
+* MATLAB R2022a+
+* Instrument Control Toolbox
+* Data Acquisition Toolbox
+
+---
+
+## **How to Run**
+
+1. On the **left computer**, run:
+
+   ```matlab
+   bimanual_L
+   ```
+
+2. On the **right computer**, run:
+
+   ```matlab
+   bimanual_R
+   ```
+
+3. Ensure both computers can communicate through TCP
+
+   * Default server IP: `192.168.0.10`
+   * Default port: `30000`
+
+---
+
+## **Parameters**
+
+Key task parameters include:
+
+| Parameter                  | Description                                   |
+| -------------------------- | --------------------------------------------- |
+| **centerHoldDuration**     | Required center-hold duration before movement |
+| **targetHoldDuration**     | Required hold time inside target              |
+| **firstMoveThreshold**     | Movement onset threshold                      |
+| **timeout**                | Maximum allowed trial duration                |
+| **circleDiameter / radii** | Target size and target distance               |
+
+---
+
+## **Outputs**
+
+### **1. Event Logs**
+
+Saved per trial (CSV or MAT format):
+
+* Trial index
+* Trial mode (uni-L / uni-R / bi)
+* Success / failure
+* Time of:
+
+  * `centerEnter`
+  * `centerExit`
+  * `firstMove`
+  * `hoverEnter`
+  * `targetHold`
+  * `trialEnd`
+
+### **2. Cursor Trajectories**
+
+Each trial saves a full trace:
+
+```
+[x, y, time]
+```
+
+Useful for:
+
+* Movement kinematics
+* Latency computation
+* Velocity / acceleration extraction
+
+### **3. TTL Signals**
+
+For neural alignment (NI-6009):
+
+* First movement onset
+* Target acquisition
+* Trial start/end
+* Success / fail markers
+
+---
+
+## **Notes & Limitations**
+
+### **Pointer precision**
+
+For stable joystick-to-cursor mapping, disable in Windows:
+
+* **Enhance pointer precision**
+* **Pointer acceleration**
+
+This ensures reproducible kinematic behavior.
+
+---
+
+### **Potential Issues**
+
+#### **1. Incomplete coordinate recording**
+
+Due to event handling such as:
+
+* Trial resets
+* Black-screen synchronization
+* Premature aborts
+* TCP delays
+
+Some trials may have:
+
+* Missing samples
+* Shortened trajectories
+* Misaligned time vectors
+
+**Recommendation:**
+Always cross-check:
+
+* Event logs
+* TTL time stamps
+
+to ensure data integrity.
+
+---
+
+#### **2. Trial duration mismatch (network latency)**
+
+Because the two computers run their own clocks:
+
+* One machine may log slightly longer trial durations
+* Differences come from TCP transmission delay
+
+**Recommendation:**
+During analysis:
+
+* Align trials by the **shorter duration**
+* Trim cursor trajectories accordingly
+
+---
+
+## **License**
+
+MIT License
+
