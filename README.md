@@ -1,10 +1,3 @@
-下面是按照 GitHub 最标准、最美观的 Markdown README 风格，**完全重新排版后的版本**。
-内容与你提供的相同，只是换成 GitHub-friendly 格式（标题、列表、加粗、分段、代码块、表格等）。
-
-你可以 **直接复制到 README.md 使用**。
-
----
-
 # **Center-Out Reaching Task (Unimanual + Bimanual)**
 
 MATLAB-based framework for running **unimanual (single-hand)** and **bimanual (two-hand)** center-out reaching tasks.
